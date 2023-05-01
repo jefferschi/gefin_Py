@@ -1,6 +1,8 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
+from telas import ClienteCad
+
 
 class Programa:
 
@@ -20,7 +22,7 @@ class Programa:
         self.raiz.config(menu=self.barra_menu) # atribui a barra menu à janela principal
 
         # menus de cadastros
-        self.menu_cad = tb.Menu(self.barra_menu, tearoff=0)
+        self.menu_cad = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Cadastro', menu=self.menu_cad, underline=0)
 
         self.menu_cad.add_command(label='Cliente', command=None, underline=0)
@@ -32,7 +34,7 @@ class Programa:
                 
 
         # menus de movimento
-        self.menu_mov = tb.Menu(self.barra_menu, tearoff=0)
+        self.menu_mov = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Movimento', menu=self.menu_mov, underline=0)
 
         self.menu_mov.add_command(label='Contas a Pagar', command=None, underline=9)
@@ -42,7 +44,7 @@ class Programa:
 
 
         # menus de relatorios
-        self.menu_rel = tb.Menu(self.barra_menu, tearoff=0)
+        self.menu_rel = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Relatórios', menu=self.menu_rel, underline=0)
 
         self.menu_rel.add_command(label='Comparativo Gráfico', command=None, underline=12)
@@ -53,7 +55,7 @@ class Programa:
 
 
         # menus de utilitários
-        self.menu_util = tb.Menu(self.barra_menu, tearoff=0)
+        self.menu_util = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Utilitários', menu=self.menu_util, underline=0)
 
         self.menu_util.add_command(label='Atualizar', command=None, underline=0)
