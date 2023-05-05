@@ -14,7 +14,8 @@ from utilitar.tabelas import TabelaDados
 class Gefin:
 
     def __init__(self):
-        self.raiz = tb.Window(themename='flatly')        
+        self.raiz = tb.Window(themename='flatly')
+        self.td = TabelaDados()
         self.janela()
         self.menu_raiz()
         self.raiz.mainloop()
@@ -64,8 +65,8 @@ class Gefin:
         # menus de utilitários
         self.menu_util = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Utilitários', menu=self.menu_util, underline=0)
-
-        self.menu_util.add_command(label='Atualizar', command=None, underline=0)
+        
+        self.menu_util.add_command(label='Atualizar tabelas', command=self.td.cria_tabelas, underline=0)
         self.menu_util.add_command(label='Versão e Licença', command=None, underline=0)
         self.menu_util.add_separator()
         self.menu_util.add_command(label='Sair', command=self.raiz.quit, underline=3)
