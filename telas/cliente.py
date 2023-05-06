@@ -1,6 +1,7 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
+from tkinter import *
 
 #from models.clientes import Cliente
 
@@ -24,26 +25,38 @@ class ClienteTelaCad:
 
         # quadro para informações básicas do cliente
 
-        self.quadro = tb.Labelframe(self.janela, text='Dados do Cliente', bootstyle=INFO,
-                                    width=750, height=450)
-        self.quadro.pack(side=TOP, padx=10, pady=10)
+        self.quadro = tb.Labelframe(self.janela, text='Dados do Cliente', bootstyle=INFO)
+        self.quadro.grid(row=0,column=0, padx=10, pady=5, ipadx=5, ipady=5)
         
-        tb.Label(self.quadro, text='Código').place(relx=0.01, rely=0.01)
+        tb.Label(self.quadro, text='Código').grid(row=0, column=0, sticky=W, padx=5, pady=2)
         self.codigo = tb.Entry(self.quadro, width=15)
-        self.codigo.place(relx=0.01, rely=0.055)
+        self.codigo.grid(row=1, column=0, sticky=W, padx=5)
         self.codigo.focus()
+
+        tb.Label(self.quadro, text='Nome').grid(row=0, column=1, sticky=W, padx=5, pady=2)
+        self.nome = tb.Entry(self.quadro, width=50)
+        self.nome.grid(row=1, column=1, sticky=W, padx=5)
+
+        ativo = IntVar(self.quadro, value=1) #variável para o check button campo Ativo 
+        self.ativo = tb.Checkbutton(self.quadro, text='Ativo', variable=ativo,
+                                    onvalue=1, offvalue=0)
+        self.ativo.grid(row=0, column=2, padx=(0,5), sticky=E)
         
-        tb.Label(self.quadro, text='Nome').place(relx=0.2, rely=0.01)
-        self.nome = tb.Entry(self.quadro, width=90)
-        self.nome.place(relx=0.2, rely=0.055)
+        
+        tb.Label(self.quadro, text='Pessoa').grid(row=2, column=0, sticky=W, padx=5, pady=2)
+        self.pessoa = tb.Combobox(self.quadro, values=['Física','Jurídica'], width=13)
+        self.pessoa.grid(row=3, column=0, sticky=W, padx=5)
+        
+        tb.Label(self.quadro, text='CPF/CNPJ').grid(row=2, column=1, sticky=W, padx=5, pady=2)
+        self.cpf_cnpj = tb.Entry(self.quadro, width=30)
+        self.cpf_cnpj.grid(row=3, column=1, sticky=W, padx=5)
 
-        tb.Label(self.quadro, text='Pessoa').place(relx=0.01, rely=0.1)
-        self.pessoa = tb.Combobox(self.quadro, values=('Física','Jurídica'), width=17)
-        self.pessoa.place(relx=0.01,rely=0.2)
+        tb.Label(self.quadro, text='RG/IE').grid(row=2, column=2, sticky=W, padx=5, pady=2)
+        self.rg_ie = tb.Entry(self.quadro, width=15)
+        self.rg_ie.grid(row=3, column=2, sticky=W, padx=5)
 
-        tb.Label(self.quadro, text='CPF').place(relx=0.2, rely=0.1)
-        self.nome = tb.Entry(self.quadro, width=90)
-        self.nome.place(relx=0.2, rely=0.2)
+
+        
 
 """
         codigo 
