@@ -20,7 +20,7 @@ class Gefin:
         self.menu_raiz()
         self.raiz.mainloop()
     
-    def janela(self):        
+    def janela(self):
         self.raiz.title("Gestão Financeira - Versão Desenvolvimento")
         self.raiz.geometry("800x500+50+50")
         self.raiz.iconbitmap('img\icone.ico')
@@ -33,7 +33,7 @@ class Gefin:
         self.menu_cad = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Cadastro', menu=self.menu_cad, underline=0)
 
-        self.menu_cad.add_command(label='Cliente', command=None, underline=0)
+        self.menu_cad.add_command(label='Cliente', command=ClienteTelaCad, underline=0)
         self.menu_cad.add_command(label='Fornecedor', command=None, underline=0)
         self.menu_cad.add_separator()
         self.menu_cad.add_command(label='Forma Pagto', command=None, underline=6)
@@ -65,6 +65,7 @@ class Gefin:
         # menus de utilitários
         self.menu_util = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Utilitários', menu=self.menu_util, underline=0)
+        
         
         self.menu_util.add_command(label='Atualizar tabelas', command=self.td.cria_tabelas, underline=0)
         self.menu_util.add_command(label='Versão e Licença', command=None, underline=0)

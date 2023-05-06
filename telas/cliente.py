@@ -1,7 +1,8 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
-from models.clientes import Cliente
+
+#from models.clientes import Cliente
 
 
 """
@@ -12,7 +13,20 @@ etc., onde cada arquivo contém a definição da interface gráfica para o respe
 
 class ClienteTelaCad:
     def __init__(self):
-        pass
+        self.raiz = tb.Toplevel()        
+        self.raiz.title("Cadastro de Clientes")
+        self.raiz.geometry("800x500+55+55")
+        self.raiz.iconbitmap('img\icone.ico')
+        
+        self.tela()       
+        self.raiz.mainloop()
+    
+    def tela(self):
+        self.quadro = tb.Labelframe(self.raiz, text='Dados do Cliente', bootstyle=SUCCESS,
+                                    width=500, height=300)
+        self.quadro.place(relx=0.01, rely=0.01)
+
+
 
 class ClienteTelaLista:
     def __init__(self):
