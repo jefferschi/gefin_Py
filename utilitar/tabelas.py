@@ -27,7 +27,8 @@ class TabelaDados:
                 CREATE TABLE IF NOT EXISTS clientes (
                     codigo INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                     nome VARCHAR(100) NOT NULL,
-                    cpf CHAR(11) UNIQUE,
+                    pessoa CHAR(10),
+                    cnpj_cpf VARCHAR(14) UNIQUE,
                     rg VARCHAR(15),
                     nascimento DATE,
                     telefone TEXT,

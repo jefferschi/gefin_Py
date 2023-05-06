@@ -15,16 +15,13 @@ class Gefin:
 
     def __init__(self):
         self.raiz = tb.Window(themename='flatly')
-        self.td = TabelaDados()
-        self.janela()
-        self.menu_raiz()
-        self.raiz.mainloop()
-    
-    def janela(self):
         self.raiz.title("Gestão Financeira - Versão Desenvolvimento")
         self.raiz.geometry("800x500+50+50")
         self.raiz.iconbitmap('img\icone.ico')
-
+        self.td = TabelaDados()
+        self.menu_raiz()
+        self.raiz.mainloop()
+    
     def menu_raiz(self):
         self.barra_menu = tb.Menu(self.raiz)
         self.raiz.config(menu=self.barra_menu) # atribui a barra menu à janela principal
