@@ -18,6 +18,25 @@ class TabelaDados:
         # confere se o arquivo existe
         arquivo = 'gefin.db'
         if(os.path.exists(arquivo)):
-            pass
+            print('tabela já existe')
         else:
-            print('arquivo de dados não exite')
+            self.conecta_bd()
+
+            # cria tabela clientes
+            self.cursor.execute(''' 
+                CREATE TABLE IF NOT EXISTS clientes (
+                    codigo INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                    nome VARCHAR(100) NOT NULL,
+                    cpf CHAR(11) UNIQUE,
+                    rg VARCHAR(15),
+                    nascimento DATE,
+                    telefone TEXT,
+                    email TEXT,
+                    endereco TEXT,
+                    bairro TEXT,
+                    cidade TEXT,
+                    uf CHAR(2),
+                    ativo INTEGER
+                );
+            ''')
+            print('tabela CLIENTES criada!')
