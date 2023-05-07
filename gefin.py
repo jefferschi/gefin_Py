@@ -69,6 +69,6 @@ class Gefin:
         self.menu_util.add_separator()
         self.menu_util.add_command(label='Sair', command=self.raiz.quit, underline=3)
 
-    
+
 if __name__ == "__main__":
     Gefin()
