@@ -2,6 +2,7 @@ import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
 from tkinter import *
+from utilitar.tabelas import ICONE_DF
 
 #from models.clientes import Cliente
 
@@ -15,16 +16,15 @@ etc., onde cada arquivo contém a definição da interface gráfica para o respe
 class ClienteTelaCad:
     def __init__(self):
         self.janela = tb.Toplevel()
-        self.janela.title("Cadastro de Clientes")
-        self.janela.geometry("600x450+70+70")
-        self.janela.iconbitmap('img\icone.ico')
-        self.janela.resizable(False,False)
-        self.tela()
+        self.janela.resizable(0,0)
+        self.tela("Cadastro de Clientes", "600x450+70+70")
     
-    def tela(self):
-
+    def tela(self, titulo, geo):
         # deixar todos os campos não editáveis ao abrir, exceto código
-
+        self.janela.title(titulo)
+        self.janela.geometry(geo)
+        self.janela.iconbitmap(ICONE_DF)
+        
         # quadro para informações básicas do cliente
         self.qd_dados = tb.Labelframe(self.janela, text='Dados do Cliente', bootstyle=INFO)
         self.qd_dados.grid(row=0,column=0, padx=10, pady=5, ipadx=5, ipady=5, sticky=W)
@@ -55,7 +55,6 @@ class ClienteTelaCad:
         self.rt_cpf_cnpj.grid(row=2, column=1, sticky=W, padx=5, pady=2)
         self.ent_cpf_cnpj = tb.Entry(self.qd_dados, width=30)
         self.ent_cpf_cnpj.grid(row=3, column=1, sticky=W, padx=5)
-
 
         self.rt_rg_ie = tb.Label(self.qd_dados, text='RG/IE')
         self.rt_rg_ie.grid(row=2, column=2, sticky=W, padx=5, pady=2)
@@ -108,10 +107,9 @@ class ClienteTelaCad:
 
         self.bt_busca = tb.Button(self.qd_bt, text='Busca', bootstyle=WARNING)
         self.bt_busca.pack(side=LEFT, padx=(5,0))
-    
         
 """        
-        
+   # anotações sobre os botoes a incluir     
         botoes:
         inclui (abre os campos para inclusão, exceto código que estava aberto e será não editável)
         altera (abre os campos para edição, exceto código que estava aberto e será não editável)

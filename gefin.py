@@ -8,20 +8,21 @@ import pymsgbox as pymb
 
 
 from telas.cliente import ClienteTelaCad
-from utilitar.tabelas import TabelaDados
+from utilitar.tabelas import TabelaDados, ICONE_DF
 
 
 class Gefin:
 
     def __init__(self):
         self.raiz = tb.Window(themename='flatly')
-        self.raiz.title("Gestão Financeira - Versão Desenvolvimento")
-        self.raiz.geometry("800x500+50+50")
-        self.raiz.iconbitmap('img\icone.ico')
-        self.td = TabelaDados()
+        self.tela("Gestão Financeira - Versão Desenvolvimento", "800x500+50+50")
         self.menu_raiz()
-        self.raiz.mainloop()
     
+    def tela(self, titulo, geo):
+        self.raiz.title(titulo)
+        self.raiz.geometry(geo)
+        self.raiz.iconbitmap(ICONE_DF)
+
     def menu_raiz(self):
         self.barra_menu = tb.Menu(self.raiz)
         self.raiz.config(menu=self.barra_menu) # atribui a barra menu à janela principal
@@ -30,7 +31,7 @@ class Gefin:
         self.menu_cad = tb.Menu(self.barra_menu)
         self.barra_menu.add_cascade(label='Cadastro', menu=self.menu_cad, underline=0)
 
-        self.menu_cad.add_command(label='Cliente', command=ClienteTelaCad, underline=0)
+        self.menu_cad.add_command(label='Cliente', command=self.abrir_cad_cli, underline=0)
         self.menu_cad.add_command(label='Fornecedor', command=None, underline=0)
         self.menu_cad.add_separator()
         self.menu_cad.add_command(label='Forma Pagto', command=None, underline=6)
@@ -64,11 +65,22 @@ class Gefin:
         self.barra_menu.add_cascade(label='Utilitários', menu=self.menu_util, underline=0)
         
         
-        self.menu_util.add_command(label='Atualizar tabelas', command=self.td.cria_tabelas, underline=0)
+        self.menu_util.add_command(label='Atualizar tabelas', command=self.tabelas_db, underline=0)
         self.menu_util.add_command(label='Versão e Licença', command=None, underline=0)
         self.menu_util.add_separator()
         self.menu_util.add_command(label='Sair', command=self.raiz.quit, underline=3)
 
+    def iniciar(self):
+        self.raiz.mainloop()
+
+    def tabelas_db(self):
+        self.td = TabelaDados()
+        self.td.cria_tabelas()
+
+    def abrir_cad_cli(self):
+        form_cli = ClienteTelaCad()   
+  
 
 if __name__ == "__main__":
-    Gefin()
+    gefin = Gefin()
+    gefin.iniciar()

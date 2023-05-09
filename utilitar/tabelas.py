@@ -3,11 +3,13 @@
 import sqlite3
 import os
 
+ICONE_DF = 'img\icone.ico'
+
 class TabelaDados:
     
     def conecta_bd(self):
             """conecta no banco de dados"""
-            self.conn = sqlite3.connect('gefin.db')
+            self.conn = sqlite3.connect('dbgefin.db')
             self.cursor = self.conn.cursor() #habilita escrever em sql
         
     def desconecta_bd(self):
@@ -15,6 +17,10 @@ class TabelaDados:
         self.conn.close()
 
     def cria_tabelas(self):
+        """
+        []CRIAR BARRA DE PROGRESSO
+
+        """
         # confere se o arquivo existe
         arquivo = 'gefin.db'
         if(os.path.exists(arquivo)):
