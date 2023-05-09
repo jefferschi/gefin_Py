@@ -78,7 +78,7 @@ class Gefin:
         self.td.cria_tabelas()
 
     def abrir_cad_cli(self):
-        form_cli = ClienteTelaCad()   
+        tela = ClienteTelaCad()
   
 
 if __name__ == "__main__":
