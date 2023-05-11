@@ -7,14 +7,19 @@ ICONE_DF = 'img\icone.ico'
 
 class TabelaDados:
     
+    def __init__(self):
+        self.conex = sqlite3.connect('dbgefin.db')
+        self.cursor = self.conex.cursor()
+
+    '''
     def conecta_bd(self):
             """conecta no banco de dados"""
             self.conn = sqlite3.connect('dbgefin.db')
             self.cursor = self.conn.cursor() #habilita escrever em sql
-        
+    '''
     def desconecta_bd(self):
         """desconecta do banco de dados"""
-        self.conn.close()
+        self.conex.close()
 
     def cria_tabelas(self):
         """
@@ -26,9 +31,7 @@ class TabelaDados:
         if(os.path.exists(arquivo)):
             print('tabela já existe')
         else:
-            self.conecta_bd()
-
-            # cria tabela clientes
+            self.conex  # cria tabela clientes
             self.cursor.execute(''' 
                 CREATE TABLE IF NOT EXISTS clientes (
                     codigo INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -46,3 +49,5 @@ class TabelaDados:
                 );
             ''')
             print('tabela CLIENTES criada!')
+
+        self.desconecta_bd()

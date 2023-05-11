@@ -11,7 +11,7 @@ from telas.cliente import ClienteTelaCad
 from utilitar.tabelas import TabelaDados, ICONE_DF
 
 
-class Gefin:
+class GeFin:
 
     def __init__(self):
         self.raiz = tb.Window(themename='flatly')
@@ -70,6 +70,7 @@ class Gefin:
         self.menu_util.add_separator()
         self.menu_util.add_command(label='Sair', command=self.raiz.quit, underline=3)
 
+
     def iniciar(self):
         self.raiz.mainloop()
 
@@ -82,5 +83,5 @@ class Gefin:
   
 
 if __name__ == "__main__":
-    gefin = Gefin()
+    gefin = GeFin()
     gefin.iniciar()

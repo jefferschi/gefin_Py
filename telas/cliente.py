@@ -2,9 +2,11 @@ import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
 from tkinter import *
-from utilitar.tabelas import ICONE_DF
 
-#from models.clientes import Cliente
+from utilitar.tabelas import ICONE_DF
+from models.clientes import Cliente
+
+
 
 
 """
@@ -58,8 +60,8 @@ class ClienteTelaCad:
 
         self.rt_rg_ie = tb.Label(self.qd_dados, text='RG/IE')
         self.rt_rg_ie.grid(row=2, column=2, sticky=W, padx=5, pady=2)
-        self.rg_ie = tb.Entry(self.qd_dados, width=15)
-        self.rg_ie.grid(row=3, column=2, sticky=W, padx=5)
+        self.ent_rg_ie = tb.Entry(self.qd_dados, width=15)
+        self.ent_rg_ie.grid(row=3, column=2, sticky=W, padx=5)
 
         # quadro 2 para informações de endereço e contato
         self.qd_compl = tb.Labelframe(self.janela, text='Complementos', bootstyle=INFO)
@@ -92,8 +94,8 @@ class ClienteTelaCad:
         
         self.rt_uf = tb.Label(self.qd_compl, text='UF')
         self.rt_uf.grid(row=4, column=2, sticky=W, padx=5, pady=2)
-        self.uf = tb.Entry(self.qd_compl, width=4)
-        self.uf.grid(row=5, column=2, sticky=W, padx=5)
+        self.ent_uf = tb.Entry(self.qd_compl, width=4)
+        self.ent_uf.grid(row=5, column=2, sticky=W, padx=5)
         
         # quadro para os botões
         self.qd_bt = tb.Frame(self.janela)
@@ -108,6 +110,21 @@ class ClienteTelaCad:
         self.bt_busca = tb.Button(self.qd_bt, text='Busca', bootstyle=WARNING)
         self.bt_busca.pack(side=LEFT, padx=(5,0))
         
+    def get_dados(self):
+        nome = self.ent_nome.get()
+        cnpj = self.ent_cpf_cnpj.get()
+        rg = self.ent_rg_ie.get()
+        tel = self.ent_tel.get()
+        email = self.ent_email.get()
+        ender = self.ent_end.get()
+        bairro = self.ent_bairro.get()
+        cidade = self.ent_cidade.get()
+        uf = self.ent_uf.get()
+        ativo = self.v_ativo
+
+        cliente = Cliente(nome=nome,cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
+                          cidade=cidade,uf=uf,ativo=ativo)
+
 """        
    # anotações sobre os botoes a incluir     
         botoes:
