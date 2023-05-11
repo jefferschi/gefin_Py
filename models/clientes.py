@@ -18,11 +18,11 @@ from utilitar.tabelas import TabelaDados
 
 class Cliente:
    
-    def __init__(self, codigo=None, nome=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
+    def __init__(self, nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
                 bairro=None, cidade=None, uf=None, ativo=None):
-
-        self.codigo = codigo
+        
         self.nome = nome
+        self.pessoa = pessoa
         self.cnpj_cpf = cnpj_cpf
         self.rg_ie = rg_ie
         self.tel = tel
@@ -35,15 +35,15 @@ class Cliente:
 
     def incluir(self):
         td = TabelaDados()        
-        td.cursor.execute(""" INSERT INTO clientes (codigo, nome, pessoa, cnpj_cpf,rg_ie,telefone,email,
+        td.cursor.execute(""" INSERT INTO clientes (nome, pessoa, cnpj_cpf,rg_ie,telefone,email,
             endereco,bairro,cidade,uf,ativo) VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
-            (self.codigo,self.nome,self.cnpj_cpf,self.rg_ie,self.tel,self.email,self.ender,self.bairro,
+            (self.nome,self.pessoa,self.cnpj_cpf,self.rg_ie,self.tel,self.email,self.ender,self.bairro,
              self.cidade,self.uf,self.ativo))
         td.conex.commit()
         td.conex.close()
-        
-
         td.desconecta_bd()
+
+        print("Cliente adicionado com sucesso!")
         
 
 

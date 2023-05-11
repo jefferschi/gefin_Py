@@ -33,6 +33,7 @@ class ClienteTelaCad:
         
         self.rt_cod = tb.Label(self.qd_dados, text='Código')
         self.rt_cod.grid(row=0, column=0, sticky=W, padx=5, pady=2)
+        # colocar o campo codigo desabilitado quando necessário de acordo com os botoes clicados
         self.ent_codigo = tb.Entry(self.qd_dados, width=15)
         self.ent_codigo.grid(row=1, column=0, sticky=W, padx=5)
         self.ent_codigo.focus()
@@ -101,7 +102,7 @@ class ClienteTelaCad:
         self.qd_bt = tb.Frame(self.janela)
         self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
 
-        self.bt_inclui = tb.Button(self.qd_bt, text='Inclui', bootstyle=SUCCESS)
+        self.bt_inclui = tb.Button(self.qd_bt, text='Inclui', bootstyle=SUCCESS, command=self.pega_dados)
         self.bt_inclui.pack(side=LEFT, padx=(5,0))
 
         self.bt_altera = tb.Button(self.qd_bt, text='Altera', bootstyle=INFO)
@@ -109,9 +110,14 @@ class ClienteTelaCad:
 
         self.bt_busca = tb.Button(self.qd_bt, text='Busca', bootstyle=WARNING)
         self.bt_busca.pack(side=LEFT, padx=(5,0))
+
+        self.bt_busca = tb.Button(self.qd_bt, text='Limpa', bootstyle=DANGER, command=self.limpa_dados)
+        self.bt_busca.pack(side=LEFT, padx=(5,0))
         
-    def get_dados(self):
+    def pega_dados(self):        
+
         nome = self.ent_nome.get()
+        pessoa = self.cbx_pessoa.get()
         cnpj = self.ent_cpf_cnpj.get()
         rg = self.ent_rg_ie.get()
         tel = self.ent_tel.get()
@@ -120,10 +126,29 @@ class ClienteTelaCad:
         bairro = self.ent_bairro.get()
         cidade = self.ent_cidade.get()
         uf = self.ent_uf.get()
-        ativo = self.v_ativo
+        ativo = self.v_ativo.get()
 
-        cliente = Cliente(nome=nome,cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
+        # colocar verificação de campos obrigatorios vazios antes de instanciar o objeto
+        # colocar verificação cnpj único (no banco de dados já é único)
+
+
+        cliente = Cliente(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
                           cidade=cidade,uf=uf,ativo=ativo)
+        cliente.incluir()
+
+        self.limpa_dados()
+
+    def limpa_dados(self):
+        self.ent_nome.delete(0, END)
+        self.cbx_pessoa.delete(0, END)
+        self.ent_cpf_cnpj.delete(0, END)
+        self.ent_rg_ie.delete(0, END)
+        self.ent_tel.delete(0, END)
+        self.ent_email.delete(0, END)
+        self.ent_end.delete(0, END)
+        self.ent_bairro.delete(0, END)
+        self.ent_cidade.delete(0, END)
+        self.ent_uf.delete(0, END)
 
 """        
    # anotações sobre os botoes a incluir     
