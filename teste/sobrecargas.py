@@ -47,6 +47,7 @@ class Cliente:
             atributo = list(self.atributos.keys())[i]
             self.atributos[atributo] = arg
 
+
         # Exemplo: atribuição direta dos atributos individuais
         # self.codigo = self.atributos['codigo']
         # self.nome = self.atributos['nome']
@@ -81,6 +82,7 @@ class Cliente:
         self.endereco = endereco
         self.telefone = telefone
         self.email = email
+
 
 ###############################
 """
