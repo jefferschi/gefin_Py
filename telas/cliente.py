@@ -8,12 +8,16 @@ from models.clientes import Cliente
 
 
 
-
 """
 colocar o que seriam as views no Django, ver se precisará criar módulos.
 criar arquivos separados para a interface gráfica, como cliente_interface.py, fornecedor_interface.py,
 etc., onde cada arquivo contém a definição da interface gráfica para o respectivo recurso.
 """
+
+### alterações:
+# todos os campos estão como não editáveis ao abrir, exceto os dados principais que podem servir como busca
+# ao clicar em incluir, a tela fica aberta para edição, exceto codigo, e o botão incluir passa a se chamar salvar
+
 
 class ClienteTelaCad:
     def __init__(self):
@@ -33,7 +37,6 @@ class ClienteTelaCad:
         
         self.rt_cod = tb.Label(self.qd_dados, text='Código')
         self.rt_cod.grid(row=0, column=0, sticky=W, padx=5, pady=2)
-        # colocar o campo codigo desabilitado quando necessário de acordo com os botoes clicados
         self.ent_codigo = tb.Entry(self.qd_dados, width=15)
         self.ent_codigo.grid(row=1, column=0, sticky=W, padx=5)
         self.ent_codigo.focus()
@@ -61,7 +64,7 @@ class ClienteTelaCad:
 
         self.rt_rg_ie = tb.Label(self.qd_dados, text='RG/IE')
         self.rt_rg_ie.grid(row=2, column=2, sticky=W, padx=5, pady=2)
-        self.ent_rg_ie = tb.Entry(self.qd_dados, width=15)
+        self.ent_rg_ie = tb.Entry(self.qd_dados, width=15, state=READONLY)
         self.ent_rg_ie.grid(row=3, column=2, sticky=W, padx=5)
 
         # quadro 2 para informações de endereço e contato
@@ -70,50 +73,110 @@ class ClienteTelaCad:
         
         self.rt_tel = tb.Label(self.qd_compl, text='Telefone')
         self.rt_tel.grid(row=0,column=0, sticky=W, padx=5, pady=2)
-        self.ent_tel = tb.Entry(self.qd_compl,width=15)
+        self.ent_tel = tb.Entry(self.qd_compl,width=15, state=READONLY)
         self.ent_tel.grid(row=1, column=0, sticky=W, padx=5)
 
         self.rt_email = tb.Label(self.qd_compl, text='E-mail')
         self.rt_email.grid(row=0,column=1, sticky=W, padx=5, pady=2)
-        self.ent_email = tb.Entry(self.qd_compl,width=39)
+        self.ent_email = tb.Entry(self.qd_compl,width=39, state=READONLY)
         self.ent_email.grid(row=1, column=1, sticky=W, padx=5, columnspan=2)
 
         self.rt_end = tb.Label(self.qd_compl, text='Endereço')
         self.rt_end.grid(row=2,column=0, sticky=W, padx=5, pady=2)
-        self.ent_end = tb.Entry(self.qd_compl,width=69)
+        self.ent_end = tb.Entry(self.qd_compl,width=69, state=READONLY)
         self.ent_end.grid(row=3, column=0, sticky=W, padx=5, columnspan=3)
 
         self.rt_bairro = tb.Label(self.qd_compl, text='Bairro')
         self.rt_bairro.grid(row=4, column=0, sticky=W, padx=5, pady=2)
-        self.ent_bairro = tb.Entry(self.qd_compl, width=25)
+        self.ent_bairro = tb.Entry(self.qd_compl, width=25, state=READONLY)
         self.ent_bairro.grid(row=5, column=0, sticky=W, padx=5)
 
         self.rt_cidade = tb.Label(self.qd_compl, text='Cidade')
         self.rt_cidade.grid(row=4, column=1, sticky=W, padx=5, pady=2)
-        self.ent_cidade = tb.Entry(self.qd_compl, width=25)
+        self.ent_cidade = tb.Entry(self.qd_compl, width=25, state=READONLY)
         self.ent_cidade.grid(row=5, column=1, sticky=W, padx=5)
         
         self.rt_uf = tb.Label(self.qd_compl, text='UF')
         self.rt_uf.grid(row=4, column=2, sticky=W, padx=5, pady=2)
-        self.ent_uf = tb.Entry(self.qd_compl, width=4)
+        self.ent_uf = tb.Entry(self.qd_compl, width=4, state=READONLY)
         self.ent_uf.grid(row=5, column=2, sticky=W, padx=5)
         
         # quadro para os botões
         self.qd_bt = tb.Frame(self.janela)
         self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
 
-        self.bt_inclui = tb.Button(self.qd_bt, text='Inclui', bootstyle=SUCCESS, command=self.pega_dados)
-        self.bt_inclui.pack(side=LEFT, padx=(5,0))
+        self.bt_novo = tb.Button(self.qd_bt, text='Novo', bootstyle=SUCCESS, command=self.libera_edicao)
+        self.bt_novo.pack(side=LEFT, padx=(5,0))
 
-        self.bt_altera = tb.Button(self.qd_bt, text='Altera', bootstyle=INFO)
+        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO)
+        self.bt_busca.pack(side=LEFT, padx=(5,0))
+
+        self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
         self.bt_altera.pack(side=LEFT, padx=(5,0))
 
-        self.bt_busca = tb.Button(self.qd_bt, text='Busca', bootstyle=WARNING)
+        self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)
+        self.bt_limpa.pack(side=LEFT, padx=(5,0))
+        
+
+    def libera_edicao(self):
+        self.ent_codigo.config(state=READONLY)
+        self.ent_rg_ie.configure(state=ACTIVE)
+        self.ent_tel.configure(state=ACTIVE)
+        self.ent_email.configure(state=ACTIVE)
+        self.ent_end.configure(state=ACTIVE)
+        self.ent_bairro.configure(state=ACTIVE)
+        self.ent_cidade.configure(state=ACTIVE)
+        self.ent_uf.configure(state=ACTIVE)
+
+        #substitui os botões na tela
+        self.qd_bt.destroy()
+        
+        self.qd_bt = tb.Frame(self.janela)
+        self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
+
+        self.bt_salva = tb.Button(self.qd_bt, text='Salvar', bootstyle=SUCCESS, command=self.pega_dados)
+        self.bt_salva.pack(side=LEFT, padx=(5,0))
+        
+        self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)
+        self.bt_limpa.pack(side=LEFT, padx=(5,0))
+
+        self.bt_cancela = tb.Button(self.qd_bt, text='Cancelar', bootstyle=DANGER, command=self.volta_tl_cad)
+        self.bt_cancela.pack(side=LEFT, padx=(5,0))
+
+    def volta_tl_cad(self):
+        self.limpa_dados()
+        self.bloqueia_edicao()
+
+    def bloqueia_edicao(self):
+        self.ent_codigo.config(state=ACTIVE)
+        self.ent_rg_ie.configure(state=READONLY)
+        self.ent_tel.configure(state=READONLY)
+        self.ent_email.configure(state=READONLY)
+        self.ent_end.configure(state=READONLY)
+        self.ent_bairro.configure(state=READONLY)
+        self.ent_cidade.configure(state=READONLY)
+        self.ent_uf.configure(state=READONLY)
+        
+        #substitui os botões na tela
+        self.qd_bt.destroy()
+        
+        self.qd_bt = tb.Frame(self.janela)
+        self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
+
+        self.bt_novo = tb.Button(self.qd_bt, text='Novo', bootstyle=SUCCESS, command=self.libera_edicao)
+        self.bt_novo.pack(side=LEFT, padx=(5,0))
+
+        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO)
         self.bt_busca.pack(side=LEFT, padx=(5,0))
 
-        self.bt_busca = tb.Button(self.qd_bt, text='Limpa', bootstyle=DANGER, command=self.limpa_dados)
-        self.bt_busca.pack(side=LEFT, padx=(5,0))
+        self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
+        self.bt_altera.pack(side=LEFT, padx=(5,0))
+
+        self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)
+        self.bt_limpa.pack(side=LEFT, padx=(5,0))
         
+
+
     def pega_dados(self):        
 
         nome = self.ent_nome.get()
@@ -136,9 +199,11 @@ class ClienteTelaCad:
                           cidade=cidade,uf=uf,ativo=ativo)
         cliente.incluir()
 
-        self.limpa_dados()
+        self.volta_tl_cad()
+
 
     def limpa_dados(self):
+        self.ent_codigo.delete(0, END)
         self.ent_nome.delete(0, END)
         self.cbx_pessoa.delete(0, END)
         self.ent_cpf_cnpj.delete(0, END)
@@ -165,4 +230,12 @@ class ClienteTelaCad:
 
 class ClienteTelaLista:
     def __init__(self):
-        pass
+        self.janela = tb.Toplevel()
+        self.janela.resizable(0,0)
+        self.tela("Lista de Clientes", "600x450+100+70")
+    
+    def tela(self, titulo, geo):
+        # deixar todos os campos não editáveis ao abrir, exceto código
+        self.janela.title(titulo)
+        self.janela.geometry(geo)
+        self.janela.iconbitmap(ICONE_DF)
