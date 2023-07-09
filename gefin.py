@@ -15,7 +15,7 @@ class GeFin:
 
     def __init__(self):
         self.raiz = tb.Window(themename='flatly')
-        self.tela("Gestão Financeira - Versão Desenvolvimento", "800x500+50+50")
+        self.tela("Gestão Financeira - Versão Desenvolvimento 1.2", "800x500+50+50")
         self.menu_raiz()
     
     def tela(self, titulo, geo):
