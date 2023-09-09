@@ -197,7 +197,7 @@ class ClienteTelaCad:
 
         cliente = Cliente(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
                           cidade=cidade,uf=uf,ativo=ativo)
-        cliente.incluir()
+        cliente.incluir("clientes")
 
         self.volta_tl_cad()
 

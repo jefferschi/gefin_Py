@@ -11,5 +11,6 @@ CREATE TABLE IF NOT EXISTS clientes (
                     bairro TEXT,
                     cidade TEXT,
                     uf CHAR(2),
-                    ativo INTEGER
+                    ativo INTEGER,
+                    data_cad DATE
                 );

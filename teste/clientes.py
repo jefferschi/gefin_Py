@@ -76,6 +76,19 @@ formulario = Formulario(janela)
 
 # Execução da janela
 janela.mainloop()
+
+"""  Orientações para criação e uso da classe
+
+# Exemplo: atribuição direta dos atributos individuais
+# self.codigo = self.atributos['codigo']
+# self.nome = self.atributos['nome']
+# self.cpf = self.atributos['cpf']
+# ...
+
+# Ou, se preferir, pode acessar os atributos diretamente pelo dicionário:
+# Exemplo: self.atributos['codigo'], self.atributos['nome'], self.atributos['cpf'], ...
+"""
+
 class Cliente:
     def _init_(self, nome=None, cpf=None, codigo=None, endereco=None, telefone=None, email=None):
         self.nome = nome
