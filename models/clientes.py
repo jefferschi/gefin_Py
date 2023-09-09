@@ -1,7 +1,7 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
-from utilitar.conexao import Conexao
+from controle.conexao import Conexao
 from models.pessoas import Pessoa
 
 

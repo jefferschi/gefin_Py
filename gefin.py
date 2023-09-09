@@ -8,7 +8,7 @@ import pymsgbox as pymb
 
 
 from telas.cliente import ClienteTelaCad
-from utilitar.conexao import ICONE_DF
+from controle.conexao import ICONE_DF
 
 
 class GeFin:

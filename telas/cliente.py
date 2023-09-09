@@ -3,7 +3,7 @@ from ttkbootstrap.constants import *
 
 from tkinter import *
 
-from utilitar.conexao import ICONE_DF
+from controle.conexao import ICONE_DF
 from models.clientes import Cliente
 
 
@@ -26,7 +26,6 @@ class ClienteTelaCad:
         self.tela("Cadastro de Clientes", "600x450+70+70")
     
     def tela(self, titulo, geo):
-        # deixar todos os campos não editáveis ao abrir, exceto código
         self.janela.title(titulo)
         self.janela.geometry(geo)
         self.janela.iconbitmap(ICONE_DF)
@@ -100,6 +99,11 @@ class ClienteTelaCad:
         self.rt_uf.grid(row=4, column=2, sticky=W, padx=5, pady=2)
         self.ent_uf = tb.Entry(self.qd_compl, width=4, state=READONLY)
         self.ent_uf.grid(row=5, column=2, sticky=W, padx=5)
+
+        self.rt_data_cad = tb.Label(self.qd_compl, text='Data do cadastro')
+        self.rt_data_cad.grid(row=6, column=0, sticky=W, padx=5, pady=2)
+        self.ent_data_cad = tb.Entry(self.qd_compl, width=10, state=READONLY)
+        self.ent_data_cad.grid(row=7, column=0, sticky=W, padx=5)
         
         # quadro para os botões
         self.qd_bt = tb.Frame(self.janela)
@@ -202,7 +206,7 @@ class ClienteTelaCad:
         print(nome)
 
         
-        #cliente.incluir("clientes")
+        cliente.incluir("clientes")
         cliente.info_teste("clientes")
 
         self.volta_tl_cad()

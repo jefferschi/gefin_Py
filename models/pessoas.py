@@ -1,7 +1,8 @@
 #import ttkbootstrap as tb
 #from ttkbootstrap.constants import *
 
-from utilitar.conexao import Conexao
+from controle.conexao import Conexao
+from datetime import *
 
 
 class Pessoa:
@@ -26,13 +27,15 @@ class Pessoa:
 
     def incluir(self, tabela): # colocar a tabela que será armazenada os dados como parâmetro
 
+        self.data_cad = datetime.today().strftime('%Y-%m-%d')
+
         sql = (f'INSERT INTO {tabela} (nome, pessoa, cnpj_cpf,rg_ie,telefone,email,endereco,bairro,'
-        'cidade,uf,ativo) VALUES (?,?,?,?,?,?,?,?,?,?,?)')
+        'cidade,uf,ativo,data_cad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)')
 
         conn = Conexao() # conecta ao banco de dados
 
         conn.cursor.execute(sql,(self.nome,self.pessoa,self.cnpj_cpf,self.rg_ie,self.tel,self.email,self.ender,self.bairro,
-             self.cidade,self.uf,self.ativo))
+             self.cidade,self.uf,self.ativo,self.data_cad))
         conn.conex.commit() # envia as inserções para o banco
         conn.desconecta_bd()
 
