@@ -7,10 +7,10 @@ from models.pessoas import Pessoa
 
 class Cliente(Pessoa):
    
-    def __init__(self, nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
-                bairro=None, cidade=None, uf=None, ativo=None):
-        super().__init__(nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
-                bairro=None, cidade=None, uf=None, ativo=None)
+    def __init__(self, nome, pessoa, cnpj_cpf, rg_ie, tel,email,ender,
+                bairro, cidade, uf, ativo):
+        super().__init__(nome, pessoa, cnpj_cpf, rg_ie, tel,email,ender,
+                bairro, cidade, uf, ativo)
 
     # verificar se haverá necessidade de sobrepor métodos herdados da classe abstrata.
 

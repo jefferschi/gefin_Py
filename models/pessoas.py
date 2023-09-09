@@ -7,8 +7,8 @@ from utilitar.conexao import Conexao
 class Pessoa:
 # classe abstrata para ser herdada por clientes e fornecedores
    
-    def __init__(self, nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
-                bairro=None, cidade=None, uf=None, ativo=None, data_cad=None):
+    def __init__(self, nome, pessoa, cnpj_cpf, rg_ie, tel,email,ender,
+                bairro, cidade, uf, ativo):
         
         self.nome = nome
         self.pessoa = pessoa
@@ -21,10 +21,10 @@ class Pessoa:
         self.cidade = cidade
         self.uf = uf
         self.ativo = ativo
-        self.data_cad = data_cad
+        #self.data_cad = data_cad
 
     def incluir(self, tabela): # colocar a tabela que será armazenada os dados como parâmetro
-        
+
         sql = (f'INSERT INTO {tabela} (nome, pessoa, cnpj_cpf,rg_ie,telefone,email,endereco,bairro,'
         'cidade,uf,ativo) VALUES (?,?,?,?,?,?,?,?,?,?,?)')
 
@@ -36,4 +36,7 @@ class Pessoa:
         conn.desconecta_bd()
 
         print("Registro adicionado com sucesso!")
+    
+    def info_teste(self, tabela):
+        print(self.nome,tabela)
         
