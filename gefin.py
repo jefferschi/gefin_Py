@@ -8,7 +8,7 @@ import pymsgbox as pymb
 
 
 from telas.cliente import ClienteTelaCad
-from utilitar.tabelas import TabelaDados, ICONE_DF
+from utilitar.conexao import ICONE_DF
 
 
 class GeFin:
@@ -65,7 +65,7 @@ class GeFin:
         self.barra_menu.add_cascade(label='Utilitários', menu=self.menu_util, underline=0)
         
         
-        self.menu_util.add_command(label='Atualizar tabelas', command=self.tabelas_db, underline=0)
+        self.menu_util.add_command(label='Atualizar tabelas', command=None, underline=0)
         self.menu_util.add_command(label='Versão e Licença', command=None, underline=0)
         self.menu_util.add_separator()
         self.menu_util.add_command(label='Sair', command=self.raiz.quit, underline=3)
@@ -74,11 +74,7 @@ class GeFin:
     def iniciar(self):
         self.raiz.mainloop()
 
-    def tabelas_db(self):
-        self.td = TabelaDados()
-        self.td.cria_tabelas()
-
-    def abrir_cad_cli(self):
+    def abrir_cad_cli(self): # abre a tela de cadastro cliente a partir da chamada no menu
         tela = ClienteTelaCad()
   
 

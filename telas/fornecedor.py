@@ -1,6 +1,7 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
+from utilitar.conexao import ICONE_DF
 from models.fornecedores import Fornecedor
 
 

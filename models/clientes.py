@@ -1,7 +1,7 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
-from utilitar.tabelas import TabelaDados
+from utilitar.conexao import Conexao
 
 
 """  Orientações para criação e uso da classe
@@ -34,14 +34,13 @@ class Cliente:
         self.ativo = ativo
 
     def incluir(self):
-        td = TabelaDados()        
-        td.cursor.execute(""" INSERT INTO clientes (nome, pessoa, cnpj_cpf,rg_ie,telefone,email,
+        conn = Conexao() # conecta ao banco de dados   
+        conn.cursor.execute(""" INSERT INTO clientes (nome, pessoa, cnpj_cpf,rg_ie,telefone,email,
             endereco,bairro,cidade,uf,ativo) VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
             (self.nome,self.pessoa,self.cnpj_cpf,self.rg_ie,self.tel,self.email,self.ender,self.bairro,
              self.cidade,self.uf,self.ativo))
-        td.conex.commit()
-        td.conex.close()
-        td.desconecta_bd()
+        conn.conex.commit() # envia as inserções para o banco
+        conn.desconecta_bd()
 
         print("Cliente adicionado com sucesso!")
         

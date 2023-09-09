@@ -3,7 +3,7 @@ from ttkbootstrap.constants import *
 
 from tkinter import *
 
-from utilitar.tabelas import ICONE_DF
+from utilitar.conexao import ICONE_DF
 from models.clientes import Cliente
 
 
