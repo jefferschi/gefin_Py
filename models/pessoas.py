@@ -39,7 +39,8 @@ class Pessoa:
         conn.conex.commit() # envia as inserções para o banco
         conn.desconecta_bd()
 
-        print("Registro adicionado com sucesso!")
+    def alterar(self, tabela):
+        pass
     
     def info_teste(self, tabela):
         print(self.nome,tabela)

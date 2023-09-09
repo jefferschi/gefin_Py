@@ -1,5 +1,6 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
+from ttkbootstrap.dialogs.dialogs import Messagebox as msg
 
 from tkinter import *
 
@@ -195,21 +196,21 @@ class ClienteTelaCad:
         uf = self.ent_uf.get()
         ativo = self.v_ativo.get()
 
-        # colocar verificação de campos obrigatorios vazios antes de instanciar o objeto
-        # colocar verificação cnpj único (no banco de dados já é único)
+        """ colocar verificação cnpj único (no banco de dados já é único)
+         obs. deixar sem por enquanto, devido à informalidade do nicho de negócio"""
 
+        # verificação de campos obrigatorios vazios antes de instanciar o objeto
+        if nome == "":
+            msg.show_info('Preencha o nome do cliente',title='Alerta', parent=self.janela, alert=False)
+        else:
 
-        cliente = Cliente(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
-                          cidade=cidade,uf=uf,ativo=ativo)
-        
-        print(cliente.nome)
-        print(nome)
-
-        
-        cliente.incluir("clientes")
-        cliente.info_teste("clientes")
-
-        self.volta_tl_cad()
+            cliente = Cliente(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
+                            cidade=cidade,uf=uf,ativo=ativo)
+            
+            cliente.incluir("clientes")
+            msg.ok('Registro adicionado com sucesso', title='Informação', parent=self.janela, alert=False)
+            
+            self.volta_tl_cad()
 
 
     def limpa_dados(self):
