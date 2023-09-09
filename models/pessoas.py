@@ -7,8 +7,9 @@ from utilitar.conexao import Conexao
 class Pessoa:
 # classe abstrata para ser herdada por clientes e fornecedores
    
+   # se colocar o none na frente do parâmetro, não será obrigatório o seu uso ao herdá-lo
     def __init__(self, nome, pessoa, cnpj_cpf, rg_ie, tel,email,ender,
-                bairro, cidade, uf, ativo):
+                bairro, cidade, uf, ativo, data_cad=None):
         
         self.nome = nome
         self.pessoa = pessoa
@@ -21,7 +22,7 @@ class Pessoa:
         self.cidade = cidade
         self.uf = uf
         self.ativo = ativo
-        #self.data_cad = data_cad
+        self.data_cad = data_cad
 
     def incluir(self, tabela): # colocar a tabela que será armazenada os dados como parâmetro
 
