@@ -9,6 +9,6 @@ from clientes import Cliente
 class Fornecedor(Cliente):    
     def __init__(self, nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
                 bairro=None, cidade=None, uf=None, ativo=None):
-        super().__init__(self,nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
+        super().__init__(nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
                 bairro=None, cidade=None, uf=None, ativo=None)
     

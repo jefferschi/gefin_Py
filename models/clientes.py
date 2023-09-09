@@ -2,25 +2,20 @@ import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
 from utilitar.conexao import Conexao
+from models.pessoas import Pessoa
 
 
-"""  Orientações para criação e uso da classe
-
-# Exemplo: atribuição direta dos atributos individuais
-# self.codigo = self.atributos['codigo']
-# self.nome = self.atributos['nome']
-# self.cpf = self.atributos['cpf']
-# ...
-
-# Ou, se preferir, pode acessar os atributos diretamente pelo dicionário:
-# Exemplo: self.atributos['codigo'], self.atributos['nome'], self.atributos['cpf'], ...
-"""
-
-class Cliente:
+class Cliente(Pessoa):
    
     def __init__(self, nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
                 bairro=None, cidade=None, uf=None, ativo=None):
-        
+        super().__init__(nome=None, pessoa=None, cnpj_cpf=None, rg_ie=None, tel=None,email=None,ender=None,
+                bairro=None, cidade=None, uf=None, ativo=None)
+
+    # verificar se haverá necessidade de sobrepor métodos herdados da classe abstrata.
+
+
+        """ fazia parte do código cliente antes de incluir classe abstrata
         self.nome = nome
         self.pessoa = pessoa
         self.cnpj_cpf = cnpj_cpf
@@ -45,23 +40,4 @@ class Cliente:
         conn.desconecta_bd()
 
         print("Registro adicionado com sucesso!")
-        
-
-
-    def teste(self):
-        # teste para instanciar a classe
-
-        cpf = input('cpf: ')
-        cod = input('cod: ')
-        nome = input('nome: ')
-
-
-        c1 = Cliente(nome=nome, codigo=cod, cnpj_cpf=cpf)
-        print(c1.codigo)
-        print(c1.cnpj_cpf)
-        print(c1.nome)
-
-        
-
-#c = Cliente()
-#c.teste()
+    """
