@@ -122,6 +122,7 @@ class ClienteTelaCad:
         self.bt_busca.pack(side=LEFT, padx=(5,0))
 
         self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
+        self.bt_altera.configure(state='disabled')
         self.bt_altera.pack(side=LEFT, padx=(5,0))
 
         self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)

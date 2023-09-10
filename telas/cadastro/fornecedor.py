@@ -107,7 +107,9 @@ class ForneceTelaCad:
         self.rt_data_cad.grid(row=6, column=0, sticky=W, padx=5, pady=2)
         self.ent_data_cad = tb.Entry(self.qd_compl, width=10, state=READONLY)
         self.ent_data_cad.grid(row=7, column=0, sticky=W, padx=5)
+        self.botoes_inicio()
         
+    def botoes_inicio(self):
         # quadro para os botões
         self.qd_bt = tb.Frame(self.janela)
         self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
@@ -115,10 +117,11 @@ class ForneceTelaCad:
         self.bt_novo = tb.Button(self.qd_bt, text='Novo', bootstyle=SUCCESS, command=self.libera_edicao)
         self.bt_novo.pack(side=LEFT, padx=(5,0))
 
-        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO)
+        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO,command=self.busca_cliente)
         self.bt_busca.pack(side=LEFT, padx=(5,0))
 
         self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
+        self.bt_altera.configure(state='disabled')
         self.bt_altera.pack(side=LEFT, padx=(5,0))
 
         self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)
@@ -166,22 +169,7 @@ class ForneceTelaCad:
         
         #substitui os botões na tela
         self.qd_bt.destroy()
-        
-        self.qd_bt = tb.Frame(self.janela)
-        self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
-
-        self.bt_novo = tb.Button(self.qd_bt, text='Novo', bootstyle=SUCCESS, command=self.libera_edicao)
-        self.bt_novo.pack(side=LEFT, padx=(5,0))
-
-        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO)
-        self.bt_busca.pack(side=LEFT, padx=(5,0))
-
-        self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
-        self.bt_altera.pack(side=LEFT, padx=(5,0))
-
-        self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)
-        self.bt_limpa.pack(side=LEFT, padx=(5,0))
-        
+        self.botoes_inicio()
 
 
     def pega_dados(self):        
