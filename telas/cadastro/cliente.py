@@ -8,8 +8,7 @@ from datetime import *
 
 from controle.conexao import ICONE_DF
 from models.clientes import Cliente
-
-
+from telas.lista.cliente import ClienteTelaLista
 
 """
 colocar o que seriam as views no Django, ver se precisará criar módulos.
@@ -107,7 +106,11 @@ class ClienteTelaCad:
         self.rt_data_cad.grid(row=6, column=0, sticky=W, padx=5, pady=2)
         self.ent_data_cad = tb.Entry(self.qd_compl, width=10, state=READONLY)
         self.ent_data_cad.grid(row=7, column=0, sticky=W, padx=5)
+        self.botoes_inicio()
+
         
+        
+    def botoes_inicio(self):
         # quadro para os botões
         self.qd_bt = tb.Frame(self.janela)
         self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
@@ -115,7 +118,7 @@ class ClienteTelaCad:
         self.bt_novo = tb.Button(self.qd_bt, text='Novo', bootstyle=SUCCESS, command=self.libera_edicao)
         self.bt_novo.pack(side=LEFT, padx=(5,0))
 
-        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO)
+        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO,command=self.busca_cliente)
         self.bt_busca.pack(side=LEFT, padx=(5,0))
 
         self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
@@ -151,6 +154,7 @@ class ClienteTelaCad:
         self.bt_cancela.pack(side=LEFT, padx=(5,0))
 
     def volta_tl_cad(self):
+        # volta ao estado  inicial da tela do cadastro após limpar os dados
         self.limpa_dados()
         self.bloqueia_edicao()
 
@@ -166,22 +170,7 @@ class ClienteTelaCad:
         
         #substitui os botões na tela
         self.qd_bt.destroy()
-        
-        self.qd_bt = tb.Frame(self.janela)
-        self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
-
-        self.bt_novo = tb.Button(self.qd_bt, text='Novo', bootstyle=SUCCESS, command=self.libera_edicao)
-        self.bt_novo.pack(side=LEFT, padx=(5,0))
-
-        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO)
-        self.bt_busca.pack(side=LEFT, padx=(5,0))
-
-        self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
-        self.bt_altera.pack(side=LEFT, padx=(5,0))
-
-        self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)
-        self.bt_limpa.pack(side=LEFT, padx=(5,0))
-        
+        self.botoes_inicio()
 
 
     def pega_dados(self):        
@@ -229,6 +218,13 @@ class ClienteTelaCad:
         self.ent_cidade.delete(0, END)
         self.ent_uf.delete(0, END)
 
+
+    def busca_cliente(self):
+        tela_busca = ClienteTelaLista()
+
+
+
+
 """        
    # anotações sobre os botoes a incluir     
         botoes:
@@ -241,15 +237,3 @@ class ClienteTelaCad:
         salvar (disponibilizado quando quando o botão inclui ou altera for acionado)
 
 """
-
-class ClienteTelaLista:
-    def __init__(self):
-        self.janela = tb.Toplevel()
-        self.janela.resizable(0,0)
-        self.tela("Lista de Clientes", "600x450+100+70")
-    
-    def tela(self, titulo, geo):
-        # deixar todos os campos não editáveis ao abrir, exceto código
-        self.janela.title(titulo)
-        self.janela.geometry(geo)
-        self.janela.iconbitmap(ICONE_DF)

@@ -205,7 +205,7 @@ class ForneceTelaCad:
 
         # verificação de campos obrigatorios vazios antes de instanciar o objeto
         if nome == "":
-            msg.show_info('Preencha o nome do cliente',title='Alerta', parent=self.janela, alert=False)
+            msg.show_info('Preencha o nome do fornecedor',title='Alerta', parent=self.janela, alert=False)
         else:
 
             fornece = Fornecedor(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,

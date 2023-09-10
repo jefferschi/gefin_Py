@@ -7,8 +7,8 @@ from datetime import *
 import pymsgbox as pymb
 
 
-from telas.cliente import ClienteTelaCad
-from telas.fornecedor import ForneceTelaCad
+from telas.cadastro.cliente import ClienteTelaCad
+from telas.cadastro.fornecedor import ForneceTelaCad
 
 from controle.conexao import ICONE_DF
 
