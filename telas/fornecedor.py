@@ -17,6 +17,7 @@ class ForneceTelaCad(BaseTelaCad):
     def __init__(self):
         super().__init__()
 
+
 class FornecTelaLista:
     def __init__(self):
         pass
