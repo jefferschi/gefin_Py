@@ -4,6 +4,8 @@ from ttkbootstrap.dialogs.dialogs import Messagebox as msg
 
 from tkinter import *
 
+from datetime import *
+
 from controle.conexao import ICONE_DF
 from models.fornecedores import Fornecedor
 
@@ -195,6 +197,8 @@ class ForneceTelaCad:
         cidade = self.ent_cidade.get()
         uf = self.ent_uf.get()
         ativo = self.v_ativo.get()
+        data_cad = datetime.today().strftime('%Y-%m-%d')
+
 
         """ colocar verificação cnpj único (no banco de dados já é único)
          obs. deixar sem por enquanto, devido à informalidade do nicho de negócio"""
@@ -204,10 +208,10 @@ class ForneceTelaCad:
             msg.show_info('Preencha o nome do cliente',title='Alerta', parent=self.janela, alert=False)
         else:
 
-            forncedor = Fornecedor(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
-                            cidade=cidade,uf=uf,ativo=ativo)
+            fornece = Fornecedor(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
+                            cidade=cidade,uf=uf,ativo=ativo, data_cad=data_cad)
             
-            forncedor.incluir(tabela="fornecedores")
+            fornece.incluir(tabela="fornecedores")
 
             msg.ok('Registro adicionado com sucesso', title='Informação', parent=self.janela, alert=False)
             

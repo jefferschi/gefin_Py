@@ -10,7 +10,7 @@ class Pessoa:
    
    # se colocar o none na frente do parâmetro, não será obrigatório o seu uso ao herdá-lo
     def __init__(self, nome, pessoa, cnpj_cpf, rg_ie, tel,email,ender,
-                bairro, cidade, uf, ativo, data_cad=None):
+                bairro, cidade, uf, ativo, data_cad):
         
         self.nome = nome
         self.pessoa = pessoa
@@ -28,7 +28,7 @@ class Pessoa:
     # INCLUIR fazer checagem de cnpj único
     def incluir(self, tabela): # colocar a tabela que será armazenada os dados como parâmetro
 
-        self.data_cad = datetime.today().strftime('%Y-%m-%d')
+        #self.data_cad = datetime.today().strftime('%Y-%m-%d')
 
         sql = (f'INSERT INTO {tabela} (nome, pessoa, cnpj_cpf,rg_ie,telefone,email,endereco,bairro,'
         'cidade,uf,ativo,data_cad) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)')

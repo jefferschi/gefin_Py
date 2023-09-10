@@ -4,6 +4,8 @@ from ttkbootstrap.dialogs.dialogs import Messagebox as msg
 
 from tkinter import *
 
+from datetime import *
+
 from controle.conexao import ICONE_DF
 from models.clientes import Cliente
 
@@ -195,6 +197,7 @@ class ClienteTelaCad:
         cidade = self.ent_cidade.get()
         uf = self.ent_uf.get()
         ativo = self.v_ativo.get()
+        data_cad = datetime.today().strftime('%Y-%m-%d')
 
         """ colocar verificação cnpj único (no banco de dados já é único)
          obs. deixar sem por enquanto, devido à informalidade do nicho de negócio"""
@@ -205,7 +208,7 @@ class ClienteTelaCad:
         else:
 
             cliente = Cliente(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
-                            cidade=cidade,uf=uf,ativo=ativo)
+                            cidade=cidade,uf=uf,ativo=ativo, data_cad=data_cad)
             
             cliente.incluir(tabela="clientes")
             msg.ok('Registro adicionado com sucesso', title='Informação', parent=self.janela, alert=False)
