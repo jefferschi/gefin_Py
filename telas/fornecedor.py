@@ -17,6 +17,7 @@ class ForneceTelaCad(BaseTelaCad):
     def __init__(self,):
         super().__init__(tabela="fornecedores",geo="600x450+70+70")
 
+    # colocar aqui o método pega_dados
 
 class FornecTelaLista:
     def __init__(self):

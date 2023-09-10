@@ -5,6 +5,8 @@ from ttkbootstrap.dialogs.dialogs import Messagebox as msg
 from tkinter import *
 
 from controle.conexao import ICONE_DF
+from models.pessoas import Pessoa
+
 
 class BaseTelaCad:
     def __init__(self,tabela,geo):
@@ -13,7 +15,8 @@ class BaseTelaCad:
         self.janela.title(f'Cadastro de {tabela}')
         self.janela.geometry(geo)
         self.janela.iconbitmap(ICONE_DF)
-        self.tela(tabela=tabela)
+        self.tabela = tabela
+        self.tela(tabela=self.tabela)
     
 
     def tela(self,tabela):        
@@ -125,7 +128,7 @@ class BaseTelaCad:
         self.qd_bt = tb.Frame(self.janela)
         self.qd_bt.grid(row=2,column=0,sticky=W, padx=5, pady=10)
 
-        self.bt_salva = tb.Button(self.qd_bt, text='Salvar', bootstyle=SUCCESS, command=self.pega_dados)
+        self.bt_salva = tb.Button(self.qd_bt, text='Salvar', bootstyle=SUCCESS, command=lambda:self.pega_dados(tabela=self.tabela))
         self.bt_salva.pack(side=LEFT, padx=(5,0))
         
         self.bt_limpa = tb.Button(self.qd_bt, text='Limpar', bootstyle=WARNING, command=self.limpa_dados)
@@ -168,7 +171,7 @@ class BaseTelaCad:
         
 
 
-    def pega_dados(self):        
+    def pega_dados(self,tabela):        
 
         nome = self.ent_nome.get()
         pessoa = self.cbx_pessoa.get()
@@ -181,21 +184,22 @@ class BaseTelaCad:
         cidade = self.ent_cidade.get()
         uf = self.ent_uf.get()
         ativo = self.v_ativo.get()
+        
+       
+        # retirar essa parte e deixá-la apenas na classe filha, onde será definida a tabela. retirar desta função o parâmetro tabela
 
-        """
-        # verificação de campos obrigatorios vazios antes de instanciar o objeto
         if nome == "":
-            msg.show_info('Preencha o nome do cliente',title='Alerta', parent=self.janela, alert=False)
+            msg.show_info(f'Preencha o campo nome para {self.tabela}',title='Alerta', parent=self.janela, alert=False)
         else:
-
-            cliente = Cliente(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
+            
+            pessoa = Pessoa(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
                             cidade=cidade,uf=uf,ativo=ativo)
             
-            cliente.incluir("clientes")
+            pessoa.incluir(self.tabela)
             msg.ok('Registro adicionado com sucesso', title='Informação', parent=self.janela, alert=False)
-            
+            pessoa.info_teste()
             self.volta_tl_cad()
-        """
+        
 
     def limpa_dados(self):
         self.ent_codigo.delete(0, END)
@@ -209,6 +213,9 @@ class BaseTelaCad:
         self.ent_bairro.delete(0, END)
         self.ent_cidade.delete(0, END)
         self.ent_uf.delete(0, END)
+
+
+
 
 
 # a ideia é tentar fazer como em models. verificar sobre a notação @abstractmethod se preciso mesmo usar
