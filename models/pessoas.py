@@ -25,6 +25,7 @@ class Pessoa:
         self.ativo = ativo
         self.data_cad = data_cad
 
+    # INCLUIR fazer checagem de cnpj único
     def incluir(self, tabela): # colocar a tabela que será armazenada os dados como parâmetro
 
         self.data_cad = datetime.today().strftime('%Y-%m-%d')

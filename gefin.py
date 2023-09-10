@@ -8,6 +8,8 @@ import pymsgbox as pymb
 
 
 from telas.cliente import ClienteTelaCad
+from telas.fornecedor import ForneceTelaCad
+
 from controle.conexao import ICONE_DF
 
 
@@ -32,7 +34,7 @@ class GeFin:
         self.barra_menu.add_cascade(label='Cadastro', menu=self.menu_cad, underline=0)
 
         self.menu_cad.add_command(label='Cliente', command=self.abrir_cad_cli, underline=0)
-        self.menu_cad.add_command(label='Fornecedor', command=None, underline=0)
+        self.menu_cad.add_command(label='Fornecedor', command=self.abrir_cad_fornece, underline=0)
         self.menu_cad.add_separator()
         self.menu_cad.add_command(label='Forma Pagto', command=None, underline=6)
         self.menu_cad.add_command(label='Tipo de despesa', command=None, underline=0)
@@ -76,6 +78,9 @@ class GeFin:
 
     def abrir_cad_cli(self): # abre a tela de cadastro cliente a partir da chamada no menu
         tela = ClienteTelaCad()
+    
+    def abrir_cad_fornece(self): # abre a tela de cadastro fornecedor a partir da chamada no menu
+        tela = ForneceTelaCad()
   
 
 if __name__ == "__main__":

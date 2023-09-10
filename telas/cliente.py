@@ -207,7 +207,7 @@ class ClienteTelaCad:
             cliente = Cliente(nome=nome,pessoa=pessoa, cnpj_cpf=cnpj,rg_ie=rg,tel=tel,email=email,ender=ender,bairro=bairro,
                             cidade=cidade,uf=uf,ativo=ativo)
             
-            cliente.incluir("clientes")
+            cliente.incluir(tabela="clientes")
             msg.ok('Registro adicionado com sucesso', title='Informação', parent=self.janela, alert=False)
             
             self.volta_tl_cad()
