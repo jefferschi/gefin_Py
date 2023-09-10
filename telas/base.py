@@ -7,18 +7,18 @@ from tkinter import *
 from controle.conexao import ICONE_DF
 
 class BaseTelaCad:
-    def __init__(self):
+    def __init__(self,tabela,geo):
         self.janela = tb.Toplevel()
         self.janela.resizable(0,0)
-        self.tela("Cadastro de Clientes", "600x450+70+70")
-    
-    def tela(self, titulo, geo):
-        self.janela.title(titulo)
+        self.janela.title(f'Cadastro de {tabela}')
         self.janela.geometry(geo)
         self.janela.iconbitmap(ICONE_DF)
-        
-        # quadro para informações básicas do cliente
-        self.qd_dados = tb.Labelframe(self.janela, text='Dados do Cliente', bootstyle=INFO)
+        self.tela(tabela=tabela)
+    
+
+    def tela(self,tabela):        
+        # quadro para informações básicas do cliente/fornecedor
+        self.qd_dados = tb.Labelframe(self.janela, text=f'Dados do {tabela}', bootstyle=INFO)
         self.qd_dados.grid(row=0,column=0, padx=10, pady=5, ipadx=5, ipady=5, sticky=W)
         
         self.rt_cod = tb.Label(self.qd_dados, text='Código')

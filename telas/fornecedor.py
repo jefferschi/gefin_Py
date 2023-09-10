@@ -14,8 +14,8 @@ etc., onde cada arquivo contém a definição da interface gráfica para o respe
 """
 
 class ForneceTelaCad(BaseTelaCad):
-    def __init__(self):
-        super().__init__()
+    def __init__(self,):
+        super().__init__(tabela="fornecedores",geo="600x450+70+70")
 
 
 class FornecTelaLista:
