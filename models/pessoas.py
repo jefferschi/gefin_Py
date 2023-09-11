@@ -42,6 +42,7 @@ class Pessoa:
 
     def alterar(self, tabela):
         pass
+        # ver arquivo alterar.py em models (estava em teste, mas fiquei com receio de apagar)
     
     def info_teste(self, tabela):
         print(self.nome,tabela)
