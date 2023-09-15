@@ -7,14 +7,14 @@ from tkinter import *
 from datetime import *
 
 from controle.conexao import ICONE_DF
-from models.clientes import Cliente
+from models.fornecedores import Fornecedor
 
 
-class ClienteTelaLista:
+class FornecedorTelaLista:
     def __init__(self):
         self.janela = tb.Toplevel()
         self.janela.resizable(0,0)
-        self.tela("Lista de Clientes", "600x450+100+70")        
+        self.tela("Lista de Fornecedores", "600x450+100+70")        
     
     def tela(self, titulo, geo):        
         self.janela.title(titulo)
@@ -23,6 +23,7 @@ class ClienteTelaLista:
     
 
         # quadro para os campos de filtro
+
 
 
         # quadro para os botões
@@ -47,4 +48,3 @@ class ClienteTelaLista:
         
    
     # fazer alternância
-

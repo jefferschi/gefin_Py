@@ -8,6 +8,7 @@ from datetime import *
 
 from controle.conexao import ICONE_DF
 from models.fornecedores import Fornecedor
+from telas.lista.fornecedor import FornecedorTelaLista
 
 
 
@@ -117,7 +118,7 @@ class ForneceTelaCad:
         self.bt_novo = tb.Button(self.qd_bt, text='Novo', bootstyle=SUCCESS, command=self.libera_edicao)
         self.bt_novo.pack(side=LEFT, padx=(5,0))
 
-        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO,command=self.busca_cliente)
+        self.bt_busca = tb.Button(self.qd_bt, text='Buscar', bootstyle=INFO,command=self.busca_fornecedor)
         self.bt_busca.pack(side=LEFT, padx=(5,0))
 
         self.bt_altera = tb.Button(self.qd_bt, text='Alterar', bootstyle=SECONDARY)
@@ -219,15 +220,6 @@ class ForneceTelaCad:
         self.ent_cidade.delete(0, END)
         self.ent_uf.delete(0, END)
 
+    def busca_fornecedor(self):
+        tela_busca = FornecedorTelaLista()
 
-class ForneceTelaLista:
-    def __init__(self):
-        self.janela = tb.Toplevel()
-        self.janela.resizable(0,0)
-        self.tela("Lista de Forncedores", "600x450+100+70")
-    
-    def tela(self, titulo, geo):
-        # deixar todos os campos não editáveis ao abrir, exceto código
-        self.janela.title(titulo)
-        self.janela.geometry(geo)
-        self.janela.iconbitmap(ICONE_DF)

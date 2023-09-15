@@ -36,9 +36,11 @@ class GeFin:
         self.menu_cad.add_command(label='Cliente', command=self.abrir_cad_cli, underline=0)
         self.menu_cad.add_command(label='Fornecedor', command=self.abrir_cad_fornece, underline=0)
         self.menu_cad.add_separator()
-        self.menu_cad.add_command(label='Forma Pagto', command=None, underline=6)
-        self.menu_cad.add_command(label='Tipo de despesa', command=None, underline=0)
-        self.menu_cad.add_command(label='Despesa', command=None, underline=0)
+        self.menu_cad.add_command(label='Categoria', command=None, underline=1) # aluguel, fornecedores, água, luz, internet etc...
+        self.menu_cad.add_command(label='Centro de custo', command=None, underline=1) #  área ou projeto a despesa está relacionada.
+        self.menu_cad.add_command(label='Conta', command=None, underline=1) # nome do banco, caixa física, cofre, aplicações, etc... o saldo está vinculado à conta
+        self.menu_cad.add_command(label='Forma pagto', command=None, underline=6) #dinheiro, boleto, deb conta, cartao cred, etc...
+        
                 
 
         # menus de movimento
