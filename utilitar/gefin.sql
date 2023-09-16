@@ -30,3 +30,8 @@ CREATE TABLE IF NOT EXISTS fornecedores (
                     ativo INTEGER,
                     data_cad DATE
                 );
+
+CREATE TABLE IF NOT EXISTS categorias (
+                    codigo INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                    categoria VARCHAR(100) NOT NULL
+                );
