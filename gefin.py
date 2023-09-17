@@ -9,6 +9,8 @@ import pymsgbox as pymb
 
 from telas.cadastro.cliente import ClienteTelaCad
 from telas.cadastro.fornecedor import ForneceTelaCad
+from telas.cadastro.categoria import CategoriaTelaCad
+
 
 from controle.conexao import ICONE_DF
 
@@ -36,7 +38,7 @@ class GeFin:
         self.menu_cad.add_command(label='Cliente', command=self.abrir_cad_cli, underline=0)
         self.menu_cad.add_command(label='Fornecedor', command=self.abrir_cad_fornece, underline=0)
         self.menu_cad.add_separator()
-        self.menu_cad.add_command(label='Categoria', command=None, underline=1) # aluguel, fornecedores, água, luz, internet etc...
+        self.menu_cad.add_command(label='Categoria', command=self.abrir_cad_categoria, underline=1) # aluguel, fornecedores, água, luz, internet etc...
         self.menu_cad.add_command(label='Centro de custo', command=None, underline=1) #  área ou projeto a despesa está relacionada.
         self.menu_cad.add_command(label='Conta', command=None, underline=1) # nome do banco, caixa física, cofre, aplicações, etc... o saldo está vinculado à conta
         self.menu_cad.add_command(label='Forma pagto', command=None, underline=6) #dinheiro, boleto, deb conta, cartao cred, etc...
@@ -83,6 +85,9 @@ class GeFin:
     
     def abrir_cad_fornece(self): # abre a tela de cadastro fornecedor a partir da chamada no menu
         tela = ForneceTelaCad()
+
+    def abrir_cad_categoria(self): # abre a tela de cadastro de categoria a partir da chamada no menu
+        tela = CategoriaTelaCad()
   
 
 if __name__ == "__main__":

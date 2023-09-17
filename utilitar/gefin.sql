@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS clientes (
                     bairro TEXT,
                     cidade TEXT,
                     uf CHAR(2),
-                    ativo INTEGER,
+                    ativo BOOLEAN,
                     data_cad DATE
                 );
 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS fornecedores (
                     bairro TEXT,
                     cidade TEXT,
                     uf CHAR(2),
-                    ativo INTEGER,
+                    ativo BOOLEAN,
                     data_cad DATE
                 );
 
